@@ -117,6 +117,21 @@ a {
   bottom: -4px;
   left: 20px;
 }
+.quantity{
+  background: #00000096;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: absolute;
+  top: -8px;
+  left: 66%;
+  padding: 3px 5px;
+  font-size: 14px;
+  line-height: 14px;
+
+}
 #mobile {
   display: none;
 }
@@ -209,7 +224,7 @@ a {
 #product1 {
   text-align: center;
 }
-.pro-container {
+.pro-container, .prod-container, .produ-container {
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
