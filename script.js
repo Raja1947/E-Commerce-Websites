@@ -6,7 +6,7 @@ var list1=document.querySelector('.prod-container');
 var list2=document.querySelector('.produ-container');
 let quantity = document.querySelector('.quantity');
 let total = document.querySelector('.total');
-let cart=document.getElementById('cart');
+let carts=document.getElementById('cart');
 
 
 
@@ -342,83 +342,86 @@ let product2=[
 // initApp1();
 
 
-let listCard2=[];
-function initApp2(){
-    products.map((value, key)=>{
-       
-        let newDiv2=document.createElement('div');
-        newDiv2.classList.add('product');
-        newDiv2.innerHTML=`
-        <img src=images/${value.image} alt="product" />
-          <div class="des">
-            <span>${value.brand}</span>
-            <h5>${value.name}</h5>
-            <div class="star">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <h4>Rs ${value.price}</h4>
+
+// // reloadCard()
+
+const categories=[...new Set(products.map((item)=>{
+    return item
+}))]
+let i=0;
+document.querySelector('.pro-container').innerHTML=categories.map((item)=>{
+    var {image,name,brand,price}=item;
+    return(
+        `
+        <div class="product" >
+        <img src=images/${image} alt="product" onclick="window.location.href='sproduct.html';"/>
+        <div class="des">
+          <span>${brand}</span>
+          <h5>${name}</h5>
+          <div class="star">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
-          <a href="#"><i class="fa fa-shopping-cart" onclick="addToCard(${key})"></i></a>
-        `;
-        
-        list.append(newDiv2);
-    })
-}
-initApp2();
+          <h4>Rs.${price}</h4>
+        </div>
+        <a href="#"><i class="fa fa-shopping-cart" onClick="addToCart("+(i++)+")"></i></a>
+      </div>
+        `
+    )
+}).join()
 
-
-function addToCard(key){
-    if(listCard2[key]==null){
-        listCard2[key]=JSON.parse(JSON.stringify(products[key]));
-        listCard2[key].quantity=1;
+var cart=[];
+function displayCart(a){
+    let j=0;
+     let total=0;
+    if(cart.length==0){
+        document.getElementById('cart').innerHTML="your cart is empty";
+    document.getElementById('total').innerHTML="$'total'.00";
     }
-    reloadCard();
+    else{
+        document.getElementById('cart').innerHTML=cart.map((item)=>{
+            var{image,name,price}=items;
+            total=total+price;
+            document.getElementById('total').innerHTML='$"+total".00';
+            return(
+                ` <table>
+                <thead>
+                    <tr>
+                        <td>Remove</td>
+                        <td>Image</td>
+                        <td>Product</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Sub Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#"><i class="far fa-times-circle" onClick="delElement"></i></a></td>
+                        <td><img src=images/${image} alt=""></td>
+                        <td>${name}</td>
+                        <td>Rs. ${price}</td>
+                        <td><input type="number" value="1"></td>
+                        <td>Rs. ${price}</td>
+                    </tr>
+                   
+                </tbody>
+            </table> `  
+            )
+
+        }).join()
+    }
+}
+function addToCart(a){
+    cart.push({...categories(a)})
+    displayCart();
 
 }
-function reloadCard(){
-    listCard2.innerHTML='';
-    let count=0;
-    let totalPrice=0;
-    listCard2.map((value,key)=>{
-        totalPrice=totalPrice+value.price;
-        count=count+value.quantity;
-        if(value !=null){
-            let newDiv3=document.createElement('table')
-            console.log('raja')
-            newDiv3.innerHTML=`
-            <thead>
-            <tr>
-                <td>Remove</td>
-                <td>Image</td>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Sub Total</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-                <td><img src="images/${value.image}"></td>
-                <td>${value.name}</td>
-                <td>${value.price}</td>
-                <td><input type="number" value="1"></td>
-                <td>Rs.${value.price.toLocaleString()}</td>
-            </tr>
-           
-        </tbody>
-            `;
-            cart.append(newDiv3)
-           
-        }
-    })
-    total.innerHTML=totalPrice.toLocaleString();
-    quantity.innerText=count
+function delElement(a){
+    cart.splice(a, 1);
+    displayCart()
 }
-
-
-reloadCard()
+// document.getElementById('count').innerHTML=cart.length;
