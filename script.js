@@ -371,21 +371,31 @@ document.querySelector('.pro-container').innerHTML=categories.map((item)=>{
       </div>
         `
     )
-}).join()
+}).join('')
 
 var cart=[];
+function addToCart(a){
+    cart.push({...categories[a]})
+    displayCart();
+
+}
+function delElement(a){
+    cart.splice(a, 1);
+    displayCart()
+}
+
 function displayCart(a){
-    let j=0;
-     let total=0;
+    let j=0, total=0;
+     document.getElementById('count').innerHTML=cart.length;
     if(cart.length==0){
         document.getElementById('cart').innerHTML="your cart is empty";
-    document.getElementById('total').innerHTML="$'total'.00";
+    document.getElementById('total').innerHTML="$"+0+".00";
     }
     else{
         document.getElementById('cart').innerHTML=cart.map((item)=>{
             var{image,name,price}=items;
             total=total+price;
-            document.getElementById('total').innerHTML='$"+total".00';
+            document.getElementById('total').innerHTML="$ "+total+".00";
             return(
                 ` <table>
                 <thead>
@@ -412,16 +422,7 @@ function displayCart(a){
             </table> `  
             )
 
-        }).join()
+        }).join('')
     }
 }
-function addToCart(a){
-    cart.push({...categories(a)})
-    displayCart();
 
-}
-function delElement(a){
-    cart.splice(a, 1);
-    displayCart()
-}
-// document.getElementById('count').innerHTML=cart.length;
