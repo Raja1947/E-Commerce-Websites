@@ -284,66 +284,7 @@ let product2=[
 
 ]
 
-// let listCard=[];
-// function initApp(){
-//     product1.map((value, key)=>{
-       
-//         let newDiv=document.createElement('div');
-//         newDiv.classList.add('product');
-//         newDiv.innerHTML=`
-//         <img src=images/${value.image} alt="product" />
-//           <div class="des">
-//             <span>${value.brand}</span>
-//             <h5>${value.name}</h5>
-//             <div class="star">
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//             </div>
-//             <h4>Rs ${value.price}</h4>
-//           </div>
-//           <a href="#"><i class="fa fa-shopping-cart"></i></a>
-//         `;
-        
-//         list2.append(newDiv);
-//     })
-// }
-// initApp();
 
-
-// let listCard1=[];
-// function initApp1(){
-//     product2.map((value, key)=>{
-       
-//         let newDiv1=document.createElement('div');
-//         newDiv1.classList.add('product');
-//         newDiv1.innerHTML=`
-//         <img src=images/${value.image} alt="product" />
-//           <div class="des">
-//             <span>${value.brand}</span>
-//             <h5>${value.name}</h5>
-//             <div class="star">
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//               <i class="fa-solid fa-star"></i>
-//             </div>
-//             <h4>Rs ${value.price}</h4>
-//           </div>
-//           <a href="#"><i class="fa fa-shopping-cart"></i></a>
-//         `;
-        
-//         list1.append(newDiv1);
-//     })
-// }
-// initApp1();
-
-
-
-// // reloadCard()
 
 const categories=[...new Set(products.map((item)=>{
     return item
